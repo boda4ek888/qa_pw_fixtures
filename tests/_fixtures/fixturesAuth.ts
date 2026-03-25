@@ -3,11 +3,13 @@ import { SignUpPage } from '../../src/ui/pages/auth/SignUpPage';
 import { SignInPage } from '../../src/ui/pages/auth/SignInPage';
 import { HomePage } from '../../src/ui/pages/HomePage';
 
-export const test = base.extend<{
-  signUpPage;
-  signInPage;
-  homePage;
-}>({
+type AuthFixtures = {
+  signUpPage: SignUpPage;
+  signInPage: SignInPage;
+  homePage: HomePage;
+};
+
+export const test = base.extend<AuthFixtures>({
   signUpPage: async ({ page }, use) => {
     const signUpPage = new SignUpPage(page);
 
