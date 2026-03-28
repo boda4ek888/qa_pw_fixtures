@@ -1,11 +1,8 @@
 import { test } from '@playwright/test';
-import { CreateArticlePage } from '../../pages/article/CreateArticlePage';
-import { ViewArticlePage } from '../../pages/article/ViewArticlePage';
 
-export async function createNewArticle(page, article) {
+export async function createNewArticle(createArticlePage,
+                                       viewArticlePage, article) {
   await test.step(`Create an article`, async () => {
-    const createArticlePage = new CreateArticlePage(page);
-    const viewArticlePage = new ViewArticlePage(page);
 
     await createArticlePage.open();
     await createArticlePage.fillTitleField(article.title);

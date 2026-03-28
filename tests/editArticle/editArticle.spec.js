@@ -15,9 +15,10 @@ test.beforeEach(async ({ page, user}) => {
 });
 
 test('Edit the article title for the article', async (
-  { page, viewArticlePage,
+  { createArticlePage, viewArticlePage,
     editArticlePage, articleWithoutTags  }) => {
-  await createNewArticle(page, articleWithoutTags);
+  await createNewArticle(createArticlePage, 
+    viewArticlePage, articleWithoutTags);
 
   const title = faker.lorem.words()
 
@@ -31,9 +32,10 @@ test('Edit the article title for the article', async (
 });
 
 test('Edit the article description for the article', async (
-  { page, viewArticlePage,
-    editArticlePage, profilePage, articleWithoutTags  }) => {
-  await createNewArticle(page, articleWithoutTags);
+  { viewArticlePage, createArticlePage,
+    editArticlePage, profilePage, articleWithoutTags }) => {
+  await createNewArticle(createArticlePage, 
+    viewArticlePage, articleWithoutTags);
 
   const description = faker.lorem.sentence(4);
 
@@ -48,9 +50,10 @@ test('Edit the article description for the article', async (
 });
 
 test('Edit the article text for the article', async (
-  { page, viewArticlePage,
+  { createArticlePage, viewArticlePage,
     editArticlePage, articleWithoutTags  }) => {
-  await createNewArticle(page, articleWithoutTags);
+  await createNewArticle(createArticlePage, 
+    viewArticlePage, articleWithoutTags);
 
   const text = faker.lorem.sentences(2);
 
@@ -64,9 +67,10 @@ test('Edit the article text for the article', async (
 });
 
 test('Add the tag for the article without tags', async (
-  { page, viewArticlePage,
+  { createArticlePage, viewArticlePage,
     editArticlePage, articleWithoutTags  }) => {
-  await createNewArticle(page, articleWithoutTags);
+  await createNewArticle(createArticlePage, 
+    viewArticlePage, articleWithoutTags);
 
   const tag = faker.lorem.word();
 
@@ -80,10 +84,10 @@ test('Add the tag for the article without tags', async (
 });
 
 test('Add the tag for the article with tags', async (
-  { page, viewArticlePage,
+  { createArticlePage, viewArticlePage,
     editArticlePage, articleWithTwoTags  }) => {
-  await createNewArticle(page, articleWithTwoTags);
-
+  await createNewArticle(createArticlePage,
+    viewArticlePage, articleWithTwoTags);
   const tag = faker.lorem.word();
 
   await viewArticlePage.clickEditArticleButton();
@@ -96,10 +100,10 @@ test('Add the tag for the article with tags', async (
 });
 
 test('Remove an article tag for the article with tag', async (
-  { page, viewArticlePage,
+  { createArticlePage, viewArticlePage,
     editArticlePage, articleWithOneTag  }) => {
-  await createNewArticle(page, articleWithOneTag);
-
+  await createNewArticle(createArticlePage,
+    viewArticlePage, articleWithOneTag);
   const tagText = articleWithOneTag.tags[0];
 
   await viewArticlePage.clickEditArticleButton();
@@ -112,9 +116,10 @@ test('Remove an article tag for the article with tag', async (
 });
 
 test('Remove an article title for the article', async (
-  { page, viewArticlePage,
+  { createArticlePage, viewArticlePage,
     editArticlePage, articleWithoutTags  }) => {
-  await createNewArticle(page, articleWithoutTags);
+  await createNewArticle(createArticlePage, 
+    viewArticlePage, articleWithoutTags);
 
   await viewArticlePage.clickEditArticleButton();
   await editArticlePage.fillTitleField('');
@@ -124,9 +129,10 @@ test('Remove an article title for the article', async (
 });
 
 test('Remove an article description for the article', async (
-  { page, viewArticlePage,
+  { createArticlePage, viewArticlePage,
     editArticlePage, articleWithoutTags  }) => {
-  await createNewArticle(page, articleWithoutTags);
+  await createNewArticle(createArticlePage, 
+    viewArticlePage, articleWithoutTags);
 
   await viewArticlePage.clickEditArticleButton();
   await editArticlePage.fillDescriptionField('');
@@ -137,9 +143,10 @@ test('Remove an article description for the article', async (
 });
 
 test('Remove the article text for the existing article', async (
-  { page, viewArticlePage,
+  { createArticlePage, viewArticlePage,
     editArticlePage, articleWithoutTags  }) => {
-  await createNewArticle(page, articleWithoutTags);
+  await createNewArticle(createArticlePage, 
+    viewArticlePage, articleWithoutTags);
 
   await viewArticlePage.clickEditArticleButton();
   await editArticlePage.fillTextField('');
